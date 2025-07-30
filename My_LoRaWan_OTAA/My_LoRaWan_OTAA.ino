@@ -186,14 +186,20 @@ void uplink_routine()
 void loop()
 {
     static uint64_t last = 0;
-    static uint64_t elapsed;
-  
-    if ((elapsed = millis() - last) > OTAA_PERIOD) {
+    if (millis() - last > OTAA_PERIOD) {
         uplink_routine();
-  
         last = millis();
     }
-    //Serial.printf("Try sleep %ums..", OTAA_PERIOD);
-    api.system.sleep.all(OTAA_PERIOD);
-    //Serial.println("Wakeup..");
+
+    // static uint64_t last = 0;
+    // static uint64_t elapsed;
+  
+    // if ((elapsed = millis() - last) > OTAA_PERIOD) {
+    //     uplink_routine();
+  
+    //     last = millis();
+    // }
+    // //Serial.printf("Try sleep %ums..", OTAA_PERIOD);
+    // api.system.sleep.all(OTAA_PERIOD);
+    // //Serial.println("Wakeup..");
 }
